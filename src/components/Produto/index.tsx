@@ -5,7 +5,6 @@ import { adicionar } from '../../store/reducers/carrinho'
 
 type Props = {
   produto: ProdutoType
-  favoritar: (produto: ProdutoType) => void
   estaNosFavoritos: boolean
 }
 
@@ -14,7 +13,7 @@ export const paraReal = (valor: number) =>
     valor
   )
 
-const Produto = ({ produto }: Props) => {
+const Produto = ({ produto, estaNosFavoritos }: Props) => {
   const dispatch = useDispatch()
 
   return (
@@ -26,7 +25,11 @@ const Produto = ({ produto }: Props) => {
       <S.Prices>
         <strong>{paraReal(produto.preco)}</strong>
       </S.Prices>
-
+      <S.BtnComprar onClick={() => dispatch(adicionar(produto))} type="button">
+        {estaNosFavoritos
+          ? '- Remover dos favoritos'
+          : '+ Adicionar aos favoritos'}
+      </S.BtnComprar>
       <S.BtnComprar onClick={() => dispatch(adicionar(produto))} type="button">
         Adicionar ao carrinho
       </S.BtnComprar>
