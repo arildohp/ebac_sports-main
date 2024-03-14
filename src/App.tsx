@@ -15,10 +15,8 @@ export type Produto = {
 }
 
 export type Favorito = {
-  id?: number
-  nome?: string
-  preco?: number
-  imagem: string
+  id: number
+  nome: string
 }
 
 function App() {
